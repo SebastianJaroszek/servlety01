@@ -1,6 +1,7 @@
 package pl.sebastian;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+@WebServlet("/time")
 public class Time extends HttpServlet {
 
     @Override
@@ -22,8 +24,10 @@ public class Time extends HttpServlet {
         out.println("<h1>Dzisiaj jest: " + localDate + "</h1>");
         out.println("<h1>Godzina: " + LocalTime.now() + "</h1>");
 
-        if (localDate.getDayOfWeek().equals(DayOfWeek.TUESDAY)) {
+        if (localDate.getDayOfWeek().equals(DayOfWeek.FRIDAY)) {
             out.println("piątek!");
+        } else {
+            out.println("dziś nie piątek... :(");
         }
     }
 }
