@@ -17,15 +17,30 @@ import java.io.PrintWriter;
         })
 public class WelcomeServlet extends HttpServlet {
 
+    private String company;
+    private String year;
+
     @Override
     public void init(ServletConfig config) throws ServletException {
-        //TODO odczytać parametry
+        company = config.getInitParameter("company");
+        year = config.getInitParameter("year");
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html");
+        resp.setCharacterEncoding("UTF-8");
         PrintWriter out = resp.getWriter();
         out.println("<h1>Welcome!</h1>");
+        out.println("Zasadnicza część strony");
+
+        printFooter(out);
+    }
+
+    private void printFooter(PrintWriter out) {
+        if (company != null && year != null){
+            out.println("<br><hr>");
+            out.println(company + " " + year);
+        }
     }
 }
